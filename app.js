@@ -1,15 +1,32 @@
-const loadPhones = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
+let counter = 0;
+let phoneName = 'iphone';
+
+const loadPhones = async (value) => {
+    toggleLoadSpinner();
+    phoneName = value;
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${value}`);
     const data = await res.json();
     const phones = data.data;
-    console.log(phones);
     displayPhone(phones);
 }
 
 const displayPhone = phones => {
+    // console.log(phones);
     const productGallery = document.getElementById('product-gallery');
-    let updatedProductGallery;
-    phones.forEach(phone => {
+    const loadMore = document.getElementById('load-more');
+    productGallery.textContent = '';
+    let phonesSliced;
+    if (counter)
+        phonesSliced = phones.slice(0, counter + 6);
+    else
+        phonesSliced = phones.slice(0, 6);
+
+    counter += 6;
+    if (phones.length > counter)
+        loadMore.classList.remove('hidden');
+    else
+        loadMore.classList.add('hidden');
+    phonesSliced.forEach(phone => {
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card max-w-96 bg-base-100 border border-[#CFCFCF] p-8 rounded-lg`;
         phoneCard.innerHTML =
@@ -30,6 +47,20 @@ const displayPhone = phones => {
             </div>`;
         productGallery.appendChild(phoneCard);
     });
+    toggleLoadSpinner();
+}
+const toggleLoadSpinner = () => {
+    const loadData = document.getElementById('loading-data');
+    loadData.classList.toggle('hidden');
+}
+const handleSearch = () => {
+    const searchValue = document.getElementById('input-search').value;
+    counter = 0;
+    loadPhones(searchValue);
+}
+const loadMoreData = () => {
+    loadPhones(phoneName);
 }
 
-loadPhones();
+// loadMoreData(phoneName);
+loadPhones(phoneName);

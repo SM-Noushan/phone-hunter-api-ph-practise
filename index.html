@@ -85,32 +85,48 @@
             </div>
         </section>
     </header>
-    <main class="mb-28">
+    <main class="mb-28 px-4">
         <!-- product section -->
         <section>
             <!-- search product -->
             <div>
                 <h1 class="text-color1 text-4xl font-semibold text-center mb-8">Search your phone</h1>
-                <div class="flex items-center justify-evenly max-w-[75%] mx-auto bg-[#100F0F0D] rounded-xl">
-                    <label
-                        class="grow flex items-center gap-2 border-2 border-white rounded-l-xl has-[:focus]:border-l-2 has-[:focus]:border-y-2 has-[:focus]:border-color2 md:px-4 py-2 md:py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
-                            class="w-4 h-4 opacity-70">
-                            <path fill-rule="evenodd"
-                                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <input type="text" class="grow bg-[#100F0F]/0 focus:outline-none"
-                            placeholder="Search your phone" />
-                    </label>
-                    <button
-                        class="px-4 md:px-6 py-2.5 md:py-3 bg-color2 hover:bg-color2/90 rounded-r-xl font-bold text-base md:text-xl text-white leading-normal">Search</button>
+                <div class="flex flex-col min-[375px]:items-center">
+                    <div class="flex items-center justify-evenly w-[75%] mx-auto bg-[#100F0F0D] rounded-xl">
+                        <label
+                            class="grow flex items-center gap-2 border-2 border-white rounded-l-xl has-[:focus]:border-l-2 has-[:focus]:border-y-2 has-[:focus]:border-color2 md:px-4 py-2 md:py-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                class="w-4 h-4 opacity-70">
+                                <path fill-rule="evenodd"
+                                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <input id="input-search" type="text" class="grow bg-[#100F0F]/0 focus:outline-none"
+                                placeholder="Search your phone" />
+                        </label>
+                        <button onclick="handleSearch()"
+                            class="px-4 md:px-6 py-2.5 md:py-3 bg-color2 hover:bg-color2/90 rounded-r-xl font-bold text-base md:text-xl text-white leading-normal">Search</button>
+                    </div>
+                    <div class="w-[75%]">
+                        <p class="text-color1 max-[375px]:text-xs text-sm opacity-40">Search: Apple,
+                            Samsung, Oppo
+                            etc.</p>
+                    </div>
                 </div>
+            </div>
+            <!-- loading -->
+            <div id="loading-data" class="flex justify-center mt-6 hidden">
+                <span class="loading loading-infinity loading-lg text-color2"></span>
             </div>
             <!-- product gallery -->
             <div id="product-gallery"
-                class="mt-12 font-poppins grid grid-cols-1 justify-items-center md:grid-cols-3 gap-6">
+                class="mt-12 font-poppins grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center  gap-6">
 
+            </div>
+            <div id="load-more" class="flex justify-center mt-6 hidden">
+                <button onclick="loadMoreData()"
+                    class="px-4 md:px-6 py-2.5 md:py-3 bg-color2 hover:bg-color2/90 rounded-xl font-bold text-base md:text-xl text-white leading-normal">Load
+                    More</button>
             </div>
         </section>
     </main>
